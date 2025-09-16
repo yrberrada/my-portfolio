@@ -1,0 +1,5 @@
+[
+  { "group": "Languages", "items": ["Python", "SQL", "Java", "TypeScript/JavaScript"] },
+  { "group": "Frameworks", "items": ["React", "Next.js", "Flutter", "Tailwind CSS"] },
+  { "group": "Tools", "items": ["Git/GitHub", "Firebase", "PostgreSQL", "Framer Motion"] }
+]

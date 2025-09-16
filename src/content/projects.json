@@ -1,0 +1,11 @@
+[
+  {
+    "title": "Eat Right",
+    "slug": "eat-right",
+    "tagline": "Camera-first nutrition app with graceful permission fallbacks.",
+    "tech": ["Android", "Java", "MVVM"],
+    "highlights": ["Offline capture", "Clean architecture"],
+    "links": { "github": "https://github.com/...", "live": "" },
+    "image": "/images/projects/eat-right.webp"
+  }
+]
