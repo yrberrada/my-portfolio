@@ -3,43 +3,43 @@
     "title": "Eat Right – Android App",
     "tagline": "Mobile app to capture and analyze meals with camera permissions and smooth UX.",
     "tech": ["Android Studio", "Java", "Agile"],
-    "links": {},
-    "image": "/images/projects/eat-right.png"
+    "links": { "github": "https://github.com/yrberrada" },
+    "image": "/images/projects/Eat_right_app_screeshot.png"
   },
   {
     "title": "Baseball Player Database",
     "tagline": "NoSQL database with optimized queries and indexing for player statistics.",
     "tech": ["MongoDB", "Schema Design", "Indexing"],
-    "links": {},
-    "image": "/images/projects/baseball-db.png"
+    "links": { "github": "https://github.com/yrberrada" },
+    "image": "/images/projects/baseball-2804477.png"
   },
   {
     "title": "Job & Salaries Application",
     "tagline": "Flutter app with Firebase Auth & Firestore to compare salaries across cities.",
     "tech": ["Flutter", "Firebase", "MVVM"],
-    "links": {},
-    "image": "/images/projects/jobs-salaries.png"
+    "links": { "github": "https://github.com/yrberrada" },
+    "image": "/images/projects/Job&Salaries_app_screenshot.png"
   },
   {
     "title": "Robby the Robot",
     "tagline": "Interactive robot built with Arduino & sensors, programmed for movement and obstacle detection.",
     "tech": ["Arduino", "C++", "Sensors", "Embedded Systems"],
-    "links": {},
-    "image": "/images/projects/robby.png"
+    "links": { "github": "https://github.com/yrberrada" },
+    "image": "/images/projects/Robby_the_Robot.png"
   },
   {
     "title": "Ethics of AI Research Poster",
     "tagline": "Researched ethical implications of brain-computer interfaces like Neuralink.",
     "tech": ["Research", "Policy", "Presentation"],
-    "links": {},
-    "image": "/images/projects/ethics-bci.png"
+    "links": { "pdf": "/files/Brain Implants and Memory Ethical and Societal Implications Poster (1).pdf" },
+    "image": "/images/projects/Brain Implants and Memory Ethical and Societal Implications Poster (1)-1.png"
   },
   {
     "title": "Brain Implants & Memory Enhancement — Ethics Paper",
     "tagline": "Researched privacy, autonomy, and equity issues in neurotechnology; proposed guidelines for responsible innovation.",
     "tech": ["Neuroethics", "Research", "Policy Analysis"],
-    "links": { "pdf": "/files/brain-implants-ethics.pdf" },
-    "image": "/images/projects/brain-implants.png"
+    "links": { "pdf": "/files/Ethical and Societal Implications of Brain Implants for Memory Enhancement_ Balancing Innovation and Responsibility.docx.pdf" },
+    "image": "/images/projects/Proposal.png"
   }
 
 ]
