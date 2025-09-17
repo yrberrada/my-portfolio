@@ -1,40 +1,26 @@
 [
   {
     "group": "Languages",
-    "items": ["TypeScript", "JavaScript", "Python", "Java", "C++"]
+    "items": ["Python", "C++", "Java", "Dart", "Kotlin", "TypeScript", "JavaScript", "SQL"]
   },
   {
-    "group": "Frameworks & Libraries",
-    "items": [
-      "React",
-      "Next.js",
-      "React Three Fiber",
-      "Three.js",
-      "Tailwind CSS",
-      "Framer Motion"
-    ]
+    "group": "Mobile & Frontend",
+    "items": ["Flutter", "Android Studio", "React", "Next.js", "Tailwind CSS", "Framer Motion"]
   },
   {
-    "group": "Backend & APIs",
-    "items": ["Node.js", "Express", "REST APIs", "GraphQL (basic)"]
+    "group": "3D & Graphics",
+    "items": ["React Three Fiber", "Three.js"]
   },
   {
-    "group": "Databases",
-    "items": ["PostgreSQL", "MongoDB", "Firebase (Firestore/Auth/Storage)"]
+    "group": "Backend & Cloud",
+    "items": ["Firebase (Auth/Firestore/Storage)", "REST APIs", "MongoDB", "Relational DBs", "Vercel"]
   },
   {
-    "group": "Cloud & DevOps",
-    "items": ["Vercel", "Docker (basic)", "GitHub Actions (basic)"]
+    "group": "Tools & Platforms",
+    "items": ["Git", "GitHub", "Unix/Linux", "Visual Studio", "WebStorm/IntelliJ", "LaTeX", "Agile"]
   },
   {
-    "group": "Tools",
-    "items": [
-      "Git",
-      "GitHub",
-      "WebStorm / IntelliJ",
-      "VS Code",
-      "Figma",
-      "Jest (basic)"
-    ]
+    "group": "Other",
+    "items": ["Computer Security", "Operating Systems", "DBMS", "Computer Architecture", "Embedded Systems", "SolidWorks"]
   }
 ]

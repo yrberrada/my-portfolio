@@ -25,16 +25,15 @@ export default function AboutSection() {
                 viewport={{ once: true, amount: 0.2 }}
                 className="text-muted max-w-3xl"
             >
-                I’m a Computer Science graduate with a strong background in both theory and
-                practice. My journey includes building applications in Flutter and Firebase,
-                developing Android apps in Java, exploring AI and data analysis, and writing
-                research papers on cutting-edge topics like brain implants and augmented
-                reality for accessibility.
-                <br />
-                <br />
-                Beyond coding, I approach problem-solving like a game of chess: evaluating
-                options, planning ahead, and making creative yet pragmatic moves.
+                Curious and adaptable problem-solver with a B.S. in Computer Science and a
+                minor in Mathematics. Experienced in building mobile apps with Flutter and
+                Firebase, exploring AI algorithms, and applying data analysis to create
+                meaningful solutions. I thrive at the intersection of technology and people,
+                combining analytical thinking with creativity to tackle challenges from
+                multiple angles. Currently seeking a Software Developer role in an
+                environment that values innovation, collaboration, and impact.
             </motion.p>
+
         </SectionWrapper>
     );
 }

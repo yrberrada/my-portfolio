@@ -64,20 +64,20 @@ export default function ContactSection() {
                 className="flex gap-4 mt-6"
             >
                 <a
-                    href="mailto:you@example.com"
+                    href="mailto:yrberrada@gmail.com"
                     className="px-4 py-2 rounded-lg bg-panel border border-panel"
                 >
                     Email me
                 </a>
                 <a
-                    href="https://www.linkedin.com/in/your-handle/"
+                    href="https://www.linkedin.com/in/yrberrada"
                     target="_blank"
                     className="px-4 py-2 rounded-lg bg-panel border border-panel"
                 >
                     LinkedIn
                 </a>
                 <a
-                    href="https://github.com/your-handle"
+                    href="https://github.com/yrberrada"
                     target="_blank"
                     className="px-4 py-2 rounded-lg bg-panel border border-panel"
                 >
