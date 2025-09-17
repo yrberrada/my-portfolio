@@ -1,3 +1,4 @@
+// src/app/layout.tsx
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -7,9 +8,9 @@ export const metadata: Metadata = {
     openGraph: {
         title: "Your Name — Software Developer",
         description: "Projects, skills, and contact.",
-        url: "https://example.com", // update later
+        url: "https://example.com",
         siteName: "Your Name — Portfolio",
-        images: ["/og.png"], // optional
+        images: ["/og.png"],
         type: "website",
     },
     icons: { icon: "/favicon.ico" },
@@ -18,7 +19,8 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en">
-        <body>
+        {/* Only ONE body. Put suppressHydrationWarning on it */}
+        <body suppressHydrationWarning>
         {/* NAV */}
         <header className="border-b border-panel">
             <nav className="container py-4 flex items-center justify-between">
@@ -43,7 +45,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <div>
                     Wooden Chess Set model by{" "}
                     <a
-                        href="AUTHOR_PROFILE_URL" // e.g. https://sketchfab.com/username
+                        href="AUTHOR_PROFILE_URL"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="underline hover:no-underline"

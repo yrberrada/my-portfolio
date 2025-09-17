@@ -1,5 +1,40 @@
 [
-  { "group": "Languages", "items": ["Python", "SQL", "Java", "TypeScript/JavaScript"] },
-  { "group": "Frameworks", "items": ["React", "Next.js", "Flutter", "Tailwind CSS"] },
-  { "group": "Tools", "items": ["Git/GitHub", "Firebase", "PostgreSQL", "Framer Motion"] }
+  {
+    "group": "Languages",
+    "items": ["TypeScript", "JavaScript", "Python", "Java", "C++"]
+  },
+  {
+    "group": "Frameworks & Libraries",
+    "items": [
+      "React",
+      "Next.js",
+      "React Three Fiber",
+      "Three.js",
+      "Tailwind CSS",
+      "Framer Motion"
+    ]
+  },
+  {
+    "group": "Backend & APIs",
+    "items": ["Node.js", "Express", "REST APIs", "GraphQL (basic)"]
+  },
+  {
+    "group": "Databases",
+    "items": ["PostgreSQL", "MongoDB", "Firebase (Firestore/Auth/Storage)"]
+  },
+  {
+    "group": "Cloud & DevOps",
+    "items": ["Vercel", "Docker (basic)", "GitHub Actions (basic)"]
+  },
+  {
+    "group": "Tools",
+    "items": [
+      "Git",
+      "GitHub",
+      "WebStorm / IntelliJ",
+      "VS Code",
+      "Figma",
+      "Jest (basic)"
+    ]
+  }
 ]
