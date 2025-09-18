@@ -5,6 +5,9 @@ import { motion } from "framer-motion";
 import SectionWrapper from "@/components/SectionWrapper";
 import { textVariant, fadeIn } from "@/lib/motion";
 import skills from "@/content/skills.json";
+import dynamic from "next/dynamic";
+
+const ChessPiece = dynamic(() => import("@/components/ChessPiece"), { ssr: false });
 
 type SkillGroup = { group: string; items: string[] };
 const data = skills as unknown as SkillGroup[];
@@ -12,26 +15,38 @@ const data = skills as unknown as SkillGroup[];
 export default function SkillsSection() {
     return (
         <SectionWrapper id="skills">
-            <motion.h2
-                variants={textVariant(0.1)}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, amount: 0.2 }}
-                className="text-2xl font-semibold mb-2"
-            >
-                Skills
-            </motion.h2>
+            <div className="grid lg:grid-cols-[96px_1fr_96px] items-start gap-4 mb-6">
+                <div className="hidden lg:flex justify-center">
+                    <ChessPiece piece="rook" className="w-24 h-24" scale={1.1} ariaLabel="Rook" />
+                </div>
 
-            <motion.p
-                variants={fadeIn("", "tween", 0.2, 0.8)}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, amount: 0.2 }}
-                className="text-muted mb-6"
-            >
-                A mix of technical expertise and collaborative experience across software
-                engineering and computer science.
-            </motion.p>
+                <div>
+                    <motion.h2
+                        variants={textVariant(0.1)}
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true, amount: 0.2 }}
+                        className="text-2xl font-semibold mb-2"
+                        style={{ color: "var(--accent)" }}
+                    >
+                        Skills
+                    </motion.h2>
+                    <motion.p
+                        variants={fadeIn("", "tween", 0.2, 0.8)}
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true, amount: 0.2 }}
+                        className="text-muted mb-2 max-w-3xl"
+                    >
+                        A mix of technical expertise and collaborative experience across software
+                        engineering and computer science.
+                    </motion.p>
+                </div>
+
+                <div className="hidden lg:flex justify-center">
+                    <ChessPiece piece="rook" className="w-24 h-24" scale={1.1} ariaLabel="Rook" />
+                </div>
+            </div>
 
             <motion.div
                 variants={fadeIn("", "tween", 0.3, 0.8)}

@@ -2,63 +2,68 @@
 
 import { Suspense, useMemo } from "react";
 import { Canvas } from "@react-three/fiber";
-import {
-    Environment,
-    OrbitControls,
-    useGLTF,
-    ContactShadows,
-    Html,
-    Center,
-    Bounds,
-} from "@react-three/drei";
+import { Environment, OrbitControls, useGLTF, ContactShadows, Html } from "@react-three/drei";
+import { Box3, Group, Object3D, Vector3 } from "three";
 import { useMediaQuery } from "react-responsive";
 import { goTo } from "@/utils/scroll";
 
 // ----------------------
-// Debug / Tuning toggles
+// Config
 // ----------------------
-
-// Path to your model in /public
-const MODEL_PATH = "/models/wooden-chess.glb";
-
-// Canvas background (match your panel)
+const MODEL_PATH = "/models/wooden-chess.glb"; // change if your path differs
 const BG = "#121317";
-
-// Start simple: force a scale and no auto-fit.
-// Try SCALE_HINT = 0.1, then 1, then 10 until you see the set.
-const SCALE_HINT = 1;
-
-// Turn this ON to let Bounds auto-frame the model AFTER you find a good scale.
-// While you're still trying to make the model appear, keep this false.
-const AUTO_FIT = false;
-
-// Show a ground grid while debugging framing/scale
-const SHOW_GRID = true;
-
-// small yaw to avoid dead-front view
-const ROTATE_Y = Math.PI * 0.12;
+const SHOW_GRID = false; // set true while tuning
+const ROTATE_Y = Math.PI * 0.12; // mild yaw so it's not dead-front
+const TARGET_SIZE = 2.6; // target longest edge in world units (board+pieces group)
+const TARGET_Y = 0;      // sit base on y=0
 
 // ----------------------
+// Utilities (no wrappers)
+// ----------------------
+function normalizeToScene(root: Object3D, targetLongestEdge = TARGET_SIZE, targetY = TARGET_Y) {
+    // 1) center at origin
+    const b = new Box3().setFromObject(root);
+    const size = new Vector3();
+    const center = new Vector3();
+    b.getSize(size);
+    b.getCenter(center);
+    root.position.sub(center);
 
-function Model() {
-    const { scene } = useGLTF(MODEL_PATH);
-    // light angle; tweak if board is sideways
-    useMemo(() => {
-        scene.rotation.set(0, ROTATE_Y, 0);
-        scene.updateMatrixWorld();
+    // 2) uniform scale so the longest edge == targetLongestEdge
+    const longest = Math.max(size.x, size.y, size.z) || 1;
+    const scale = targetLongestEdge / longest;
+    root.scale.setScalar(scale);
+
+    // 3) drop base to targetY
+    const after = new Box3().setFromObject(root);
+    root.position.y += (targetY - after.min.y);
+
+    // 4) gentle yaw so it reads better
+    root.rotation.y = ROTATE_Y;
+}
+
+function useNormalizedModel(path: string) {
+    const { scene } = useGLTF(path);
+    // produce a stable, normalized clone (no <Center/>)
+    return useMemo(() => {
+        const cloned = (scene as Group).clone(true);
+        normalizeToScene(cloned);
+        return cloned;
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [scene]);
-    return <primitive object={scene} />;
 }
 useGLTF.preload(MODEL_PATH);
 
-// Original HTML hotspots (easy to see/click)
+// ----------------------
+// Hotspots (unchanged API)
+// ----------------------
 function Hotspots() {
     const pts = [
         { pos: [0.35, 0.18, 0.15], label: "♛ Projects", to: "projects" },
-        { pos: [0.45, 0.18, -0.10], label: "♜ Skills", to: "skills" },
-        { pos: [0.10, 0.18, 0.05], label: "♚ About", to: "about" },
-        { pos: [-0.15, 0.18, 0.10], label: "♝ Education", to: "education" },
-        { pos: [0.10, 0.18, -0.25], label: "♟ Contact", to: "contact" },
+        { pos: [0.45, 0.18, -0.10], label: "♜ Skills",   to: "skills" },
+        { pos: [0.10, 0.18, 0.05],  label: "♚ About",    to: "about" },
+        { pos: [-0.15, 0.18, 0.10], label: "♝ Education",to: "education" },
+        { pos: [0.10, 0.18, -0.25], label: "♟ Contact",  to: "contact" },
     ];
     return (
         <>
@@ -78,9 +83,12 @@ function Hotspots() {
     );
 }
 
+// ----------------------
+// Scene (no <Center/> / <Bounds/>)
+// ----------------------
 export default function ChessScene() {
-    // cap DPR on small screens for perf
     const isSmall = useMediaQuery({ maxWidth: 640 });
+    const model = useNormalizedModel(MODEL_PATH);
 
     return (
         <div
@@ -92,51 +100,21 @@ export default function ChessScene() {
                 dpr={isSmall ? [1, 1.5] : [1, 2]}
                 camera={{ position: [2.2, 2.0, 2.2], fov: 42, near: 0.1, far: 100 }}
             >
-                {/* Match site background so it never looks like a white void */}
                 <color attach="background" args={[BG]} />
 
-                {/* Lights + environment */}
                 <ambientLight intensity={0.6} />
                 <directionalLight intensity={1.2} position={[3, 5, 2]} />
                 <Environment preset="city" />
 
-                {/* Soft ground shadow */}
-                <ContactShadows
-                    position={[0, -0.01, 0]}
-                    opacity={0.25}
-                    scale={10}
-                    blur={2.5}
-                    far={3}
-                />
+                <ContactShadows position={[0, -0.01, 0]} opacity={0.25} scale={10} blur={2.5} far={3} />
 
-                {/* Debug grid helper */}
                 {SHOW_GRID && <gridHelper args={[10, 10]} />}
 
                 <Suspense fallback={null}>
-                    {/* PHASE 1: force scale, no auto-fit (easiest to make it visible) */}
-                    {!AUTO_FIT && (
-                        <Center>
-                            <group scale={SCALE_HINT}>
-                                <Model />
-                                <Hotspots />
-                            </group>
-                        </Center>
-                    )}
-
-                    {/* PHASE 2: once visible & roughly sized, enable AUTO_FIT = true */}
-                    {AUTO_FIT && (
-                        <Center>
-                            <Bounds fit clip observe margin={1.2}>
-                                <group scale={SCALE_HINT}>
-                                    <Model />
-                                    <Hotspots />
-                                </group>
-                            </Bounds>
-                        </Center>
-                    )}
+                    <primitive object={model} />
+                    <Hotspots />
                 </Suspense>
 
-                {/* Simple controls while tuning */}
                 <OrbitControls
                     enablePan={false}
                     maxPolarAngle={Math.PI / 2.2}

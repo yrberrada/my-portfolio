@@ -3,14 +3,12 @@
 
 import { motion } from "framer-motion";
 import { textVariant, fadeIn } from "@/lib/motion";
-import MinimalChessCanvas from "@/components/canvas/MinimalChessCanvas"; // 3D chess scene
 
 export default function HeroSection() {
     return (
-        <section id="hero" className="container py-16 sm:py-24">
-            <div className="grid md:grid-cols-12 gap-10 items-center">
-                {/* LEFT copy */}
-                <div className="md:col-span-6 space-y-6">
+        <section id="hero" className="relative w-full bg-panel">
+            <div className="container py-20 sm:py-28">
+                <div className="max-w-2xl space-y-6">
                     {/* Headline */}
                     <motion.h1
                         variants={textVariant(0.1)}
@@ -27,9 +25,12 @@ export default function HeroSection() {
                         <span className="opacity-90">Software Developer</span>
                     </motion.h1>
 
+                    {/* Optional accent underline */}
+                    <div className="accent-underline" />
+
                     {/* Tagline */}
                     <motion.p
-                        variants={fadeIn("", "tween", 0.2, 0.8)}
+                        variants={fadeIn("", "tween", 0.15, 0.8)}
                         initial="hidden"
                         whileInView="show"
                         viewport={{ once: true, amount: 0.25 }}
@@ -37,12 +38,17 @@ export default function HeroSection() {
                     >
                         Computer Science graduate with hands-on experience in{" "}
                         <span className="font-medium">Flutter, Firebase, Python, and C++</span>.
-                        I approach coding like chess: with strategy, foresight, and creative
-                        problem-solving.
+                        I approach coding like chess: strategy, foresight, and creative problem-solving.
                     </motion.p>
 
-                    {/* Call-to-action buttons */}
-                    <div className="flex flex-wrap gap-4">
+                    {/* CTAs */}
+                    <motion.div
+                        variants={fadeIn("", "tween", 0.25, 0.8)}
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true, amount: 0.25 }}
+                        className="flex flex-wrap gap-4"
+                    >
                         <a
                             href="/files/resume.pdf"
                             target="_blank"
@@ -56,24 +62,8 @@ export default function HeroSection() {
                         >
                             ✉️ Contact Me
                         </a>
-                    </div>
+                    </motion.div>
                 </div>
-
-                {/* RIGHT canvas container with animation */}
-                <motion.div
-                    variants={fadeIn("up", "spring", 0.25, 1)}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true, amount: 0.2 }}
-                    className="md:col-span-6"
-                >
-                    <div className="relative w-full h-[420px] sm:h-[480px] rounded-2xl overflow-hidden border border-panel bg-panel">
-                        <MinimalChessCanvas />
-                    </div>
-                    <p className="mt-3 text-sm text-muted text-center">
-                        Explore the 3D chessboard — scroll or orbit.
-                    </p>
-                </motion.div>
             </div>
         </section>
     );

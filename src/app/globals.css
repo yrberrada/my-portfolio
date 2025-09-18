@@ -34,3 +34,23 @@ body { @apply antialiased; background: var(--bg); color: var(--text); }
 .btn-accent{ background: var(--accent); color: #111; }
 .btn-accent:hover{ background: color-mix(in oklab, var(--accent), #000 10%); }
 .border-panel{ border-color: color-mix(in oklab, var(--panel), #fff 12%); }
+
+@import "swiper/css";
+@import "swiper/css/navigation";
+@import "swiper/css/pagination";
+
+/* Soft vignette so hero text stays readable on top of 3D */
+.hero-gradient {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+            radial-gradient(1200px 500px at 20% 40%, rgba(0,0,0,0.45), transparent 60%),
+            linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.15) 40%, transparent);
+}
+
+/* Optional: subtle animated shine on the accent, keep it if you like */
+.accent-underline {
+    background: linear-gradient(90deg, var(--accent), color-mix(in oklab, var(--accent), #fff 35%), var(--accent));
+    height: 2px; width: 100px; border-radius: 9999px; opacity: .7;
+}
