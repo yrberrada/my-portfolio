@@ -2,14 +2,17 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+const NAME = "Yassine Berrada Rekhami";
+const SITE_URL = "https://example.com"; // <- update if you have a real domain
+
 export const metadata: Metadata = {
-    title: "Your Name — Software Developer",
-    description: "Portfolio of Your Name: projects, skills, and contact info.",
+    title: `${NAME} — Software Developer`,
+    description: `Portfolio of ${NAME}: projects, skills, and contact info.`,
     openGraph: {
-        title: "Your Name — Software Developer",
+        title: `${NAME} — Software Developer`,
         description: "Projects, skills, and contact.",
-        url: "https://example.com",
-        siteName: "Your Name — Portfolio",
+        url: SITE_URL,
+        siteName: `${NAME} — Portfolio`,
         images: ["/og.png"],
         type: "website",
     },
@@ -19,14 +22,18 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en">
-        {/* Only ONE body. Put suppressHydrationWarning on it */}
         <body suppressHydrationWarning>
         {/* NAV */}
         <header className="border-b border-panel">
             <nav className="container py-4 flex items-center justify-between">
-                <a href="#hero" className="font-semibold tracking-tight">
-                    Your<span style={{ color: "var(--accent)" }}>Name</span>
+                {/* Brand now scrolls to hero (#home) */}
+                <a
+                    href="#home"
+                    className="font-semibold tracking-tight hover:opacity-80 transition"
+                >
+                    Yassine <span style={{ color: "var(--accent)" }}>Berrada Rekhami</span>
                 </a>
+
                 <div className="hidden sm:flex gap-6 text-sm text-muted">
                     <a href="#projects" className="hover:underline">Projects</a>
                     <a href="#skills" className="hover:underline">Skills</a>
@@ -42,7 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* FOOTER + attribution */}
         <footer className="mt-24 border-t border-panel">
             <div className="container py-8 text-sm text-muted space-y-2">
-                <div>© {new Date().getFullYear()} Your Name.</div>
+                <div>© {new Date().getFullYear()} {NAME}.</div>
                 <div>
                     Wooden Chess Set model by{" "}
                     <a

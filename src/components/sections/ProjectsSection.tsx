@@ -36,7 +36,7 @@ export default function ProjectsSection() {
                     viewport={{ once: true, amount: 0.2 }}
                     className="text-muted max-w-3xl mb-6"
                 >
-                    The Queen embodies <span className="text-white font-semibold">versatility</span>
+                    The Queen embodies <span className="text-white font-semibold">versatility{" "}</span>
                     and <span className="text-white font-semibold">creativity</span> — this section
                     showcases breadth, problem-solving, and clear execution across software engineering.
                 </motion.p>
