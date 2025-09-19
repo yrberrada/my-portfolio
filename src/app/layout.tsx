@@ -30,7 +30,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <div className="hidden sm:flex gap-6 text-sm text-muted">
                     <a href="#projects" className="hover:underline">Projects</a>
                     <a href="#skills" className="hover:underline">Skills</a>
-                    <a href="#about" className="hover:underline">About</a>      {/* ✅ added */}
                     <a href="#education" className="hover:underline">Education</a>
                     <a href="#contact" className="hover:underline">Contact</a>
                 </div>

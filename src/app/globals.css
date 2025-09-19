@@ -54,3 +54,58 @@ body { @apply antialiased; background: var(--bg); color: var(--text); }
     background: linear-gradient(90deg, var(--accent), color-mix(in oklab, var(--accent), #fff 35%), var(--accent));
     height: 2px; width: 100px; border-radius: 9999px; opacity: .7;
 }
+/* --- Wood theme helpers for project cards --- */
+:root {
+    /* tweak these if you want a different warmth */
+    --wood-base: #2d2318;        /* deep walnut */
+    --wood-mid:  #3a2b1d;
+    --wood-top:  #4a3724;        /* lighter wood ripple */
+    --wood-border: rgba(255, 220, 180, 0.18);
+    --wood-border-hover: rgba(255, 220, 180, 0.35);
+    --wood-glow: rgba(255, 205, 155, 0.25);
+}
+
+/* Background blend that reads "wood" without heavy images */
+.bg-wood {
+    background:
+            radial-gradient(120% 60% at 10% 10%, var(--wood-top) 0%, transparent 40%),
+            radial-gradient(120% 80% at 80% 0%, var(--wood-mid) 0%, transparent 55%),
+            linear-gradient(135deg, var(--wood-base) 0%, var(--wood-mid) 60%, var(--wood-top) 100%);
+}
+
+/* border + subtle texture ring */
+.border-wood { border-color: var(--wood-border); }
+
+/* soft outer drop when hovering */
+.shadow-wood {
+    box-shadow:
+            0 10px 30px -10px rgba(0,0,0,0.45),
+            0 0 0 0 var(--wood-glow);
+}
+.shadow-wood-hover {
+    box-shadow:
+            0 18px 40px -12px rgba(0,0,0,0.55),
+            0 0 0 6px var(--wood-glow);
+}
+
+/* glossy sweep on hover */
+.card-shine::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: 1rem; /* match rounded-2xl */
+    background: radial-gradient(60% 40% at 20% 0%,
+    rgba(255,255,255,0.065) 0%,
+    rgba(255,255,255,0.02) 50%,
+    transparent 70%);
+    opacity: 0;
+    transition: opacity 220ms ease;
+    pointer-events: none;
+}
+.card-shine:hover::before { opacity: 1; }
+
+/* respect motion preferences for the hover scale/lift */
+@media (prefers-reduced-motion: reduce) {
+    .no-motion { transition: none !important; transform: none !important; }
+}
+
